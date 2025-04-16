@@ -19,7 +19,7 @@ transform = transforms.Compose([
 
 def predict_image(image_path):
     image = Image.open(image_path)
-    image = transform(image).unsqueeze(0)  # shape: [1, 1, 28, 28]
+    image = transform(image).unsqueeze(0) 
     with torch.no_grad():
         output = model(image)
     predicted_class = torch.argmax(output, dim=1).item()
