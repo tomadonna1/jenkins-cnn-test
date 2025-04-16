@@ -31,7 +31,7 @@ def main():
         if filename.endswith(".png"):
             path = os.path.join(test_dir, filename)
             prediction = predict_image(path)
-            print(f"🔍 {filename} → Prediction: {prediction}")
+            print(f"{filename} → Prediction: {prediction}")
 
 if __name__ == "__main__":
     main()
