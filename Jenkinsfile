@@ -5,7 +5,7 @@ pipeline {
             }
       }
     triggers{
-	    pollSCM '*/1 * * * *' // check git repo every 1 minutes to see any changes, if changes made then run the jenkins
+	    pollSCM '*/1 * * * *' // check git repo every 1 minute to see any changes, if changes made then run the jenkins
     }
     environment{
         DIRECTORY_PATH = 'https://github.com/tomadonna1/jenkins-cnn-test'
