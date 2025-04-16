@@ -5,7 +5,7 @@ pipeline {
             }
       }
     triggers{
-	    pollSCM '*/1 * * * *'
+	    pollSCM '*/1 * * * *' // check git repo every 1 minutes to see any changes, if changes made then run the jenkins
     }
     environment{
         DIRECTORY_PATH = 'https://github.com/tomadonna1/jenkins-cnn-test'
@@ -44,21 +44,17 @@ pipeline {
                 sleep 10
             }
         }
-        stage('Deliver') {
+        stage('Deploy to Production'){
             steps {
                 echo "Deploying to the production environment: ${env.PRODUCTION_ENVIRONMENT}"
-            }
-            post {
-                success{ echo "Post success "}
-		        failure { echo "Post failed" }
-            }
-        }
-        stage('Post-deploy Test'){
-            steps {
                 echo "Running prediction test with client.py"
                 sh '''
                 python3 client.py
                 '''
+                post {
+                    success{ echo "Post success "}
+                    failure { echo "Post failed" }
+                }
             }
         }
     }
