@@ -17,7 +17,7 @@ pipeline {
             steps {
                 echo "Fetch the source code from the directory path specified by the environment variable"
                 echo "Fetching from: ${env.DIRECTORY_PATH}"
-                sh 'pip install --break-system-packages -r requirements.txt'
+                sh 'pip install requests'
                 echo "Compile the code and generate any necessary artefacts"
             }
         }
@@ -56,7 +56,10 @@ pipeline {
         stage('Post-deploy Test'){
             steps {
                 echo "Running prediction test with client.py"
-                sh 'python3 client/client.py'
+                sh '''
+                cd client
+                python3 client.py
+                '''
             }
         }
     }
