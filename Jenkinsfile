@@ -39,6 +39,10 @@ pipeline {
             steps {
                 echo "Deploy the application to a testing environment specified by the environment variable"
                 echo "Deploying to: ${env.TESTING_ENVIRONMENT}"
+                sh '''
+                    nohup uvicorn src.api:app --host 0.0.0.0 --port 8000 &
+                    sleep 5  # wait for server to fully start
+                '''
             }
         }
         stage('Approval') {
