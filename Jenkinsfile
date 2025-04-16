@@ -17,7 +17,7 @@ pipeline {
             steps {
                 echo "Fetch the source code from the directory path specified by the environment variable"
                 echo "Fetching from: ${env.DIRECTORY_PATH}"
-                sh 'pip install -r requirements.txt'
+                sh 'pip install --break-system-packages -r requirements.txt'
                 echo "Compile the code and generate any necessary artefacts"
             }
         }
