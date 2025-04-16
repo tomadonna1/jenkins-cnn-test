@@ -47,10 +47,6 @@ pipeline {
         stage('Deliver') {
             steps {
                 echo "Deploying to the production environment: ${env.PRODUCTION_ENVIRONMENT}"
-                sh '''
-                    nohup uvicorn src.api:app --host 0.0.0.0 --port 8000 > uvicorn.log 2>&1 &
-                    sleep 5
-                '''
             }
             post {
                 success{ echo "Post success "}
@@ -61,7 +57,6 @@ pipeline {
             steps {
                 echo "Running prediction test with client.py"
                 sh '''
-                cd client
                 python3 client.py
                 '''
             }
