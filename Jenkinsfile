@@ -17,10 +17,7 @@ pipeline {
             steps {
                 echo "Fetch the source code from the directory path specified by the environment variable"
                 echo "Fetching from: ${env.DIRECTORY_PATH}"
-                sh '''
-                pip install --break-system-packages requests
-                pip install --break-system-packages pillow
-                '''
+                sh 'pip install --break-system-packages -r requirements.txt'
                 echo "Compile the code and generate any necessary artefacts"
             }
         }
@@ -39,10 +36,6 @@ pipeline {
             steps {
                 echo "Deploy the application to a testing environment specified by the environment variable"
                 echo "Deploying to: ${env.TESTING_ENVIRONMENT}"
-                sh '''
-                    nohup uvicorn src.api:app --host 0.0.0.0 --port 8000 &
-                    sleep 5  # wait for server to fully start
-                '''
             }
         }
         stage('Approval') {
@@ -54,6 +47,10 @@ pipeline {
         stage('Deliver') {
             steps {
                 echo "Deploying to the production environment: ${env.PRODUCTION_ENVIRONMENT}"
+                sh '''
+                    nohup uvicorn src.api:app --host 0.0.0.0 --port 8000 > uvicorn.log 2>&1 &
+                    sleep 5
+                '''
             }
             post {
                 success{ echo "Post success "}
