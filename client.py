@@ -6,7 +6,7 @@ from lenet import LeNet5
 
 # Load model
 model = LeNet5(input_channels=1, input_height=28, input_width=28, num_classes=10)
-model.load_state_dict(torch.load("model.pt", map_location="cpu"))
+model.load_state_dict(torch.load("model.pth", map_location="cpu"))
 model.eval()
 
 # Image preprocessing

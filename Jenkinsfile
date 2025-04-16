@@ -8,7 +8,7 @@ pipeline {
 	    pollSCM '*/1 * * * *'
     }
     environment{
-        DIRECTORY_PATH = '/src'
+        DIRECTORY_PATH = 'https://github.com/tomadonna1/jenkins-cnn-test'
         TESTING_ENVIRONMENT = 'testing environment'
         PRODUCTION_ENVIRONMENT = 'production environment'
     }
