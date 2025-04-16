@@ -52,5 +52,11 @@ pipeline {
 		        failure { echo "Post failed" }
             }
         }
+        stage('Post-deploy Test'){
+            steps {
+                echo "Running prediction test with client.py"
+                sh 'python3 client/client.py'
+            }
+        }
     }
 }
