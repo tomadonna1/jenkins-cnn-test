@@ -51,10 +51,10 @@ pipeline {
                 sh '''
                 python3 client.py
                 '''
-                post {
-                    success{ echo "Post success "}
-                    failure { echo "Post failed" }
-                }
+            }
+            post {
+                success{ echo "Post success "}
+                failure { echo "Post failed" }
             }
         }
     }
