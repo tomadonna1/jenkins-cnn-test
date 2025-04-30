@@ -56,7 +56,7 @@ pipeline {
                 echo "Deploying to the production environment: ${env.PRODUCTION_ENVIRONMENT}"
                 echo "Running prediction test with client.py"
                 sh '''
-                python3 client.py
+                sh '/opt/venv/bin/python client.py'
                 '''
             }
             post {
