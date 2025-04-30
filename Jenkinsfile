@@ -1,10 +1,10 @@
 pipeline {
-    agent { 
-        // node {
-        //     // label 'docker-agent-python2'
-        //     label 'docker-agent-w8'
-        //     }
-      }
+    // agent { 
+    //     // node {
+    //     //     // label 'docker-agent-python2'
+    //     //     label 'docker-agent-w8'
+    //     //     }
+    //   }
       agent {
             docker{
                 image 'tomadonna/jenkins-cnn'
