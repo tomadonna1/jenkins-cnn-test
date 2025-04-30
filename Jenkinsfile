@@ -4,13 +4,13 @@ pipeline {
         //     // label 'docker-agent-python2'
         //     label 'docker-agent-w8'
         //     }
-        agent {
-                docker{
-                    image 'tomadonna/jenkins-cnn'
-                    args '-u root'
-                }
-            }
       }
+      agent {
+            docker{
+                image 'tomadonna/jenkins-cnn'
+                args '-u root'
+            }
+        }
     triggers{
 	    pollSCM '*/1 * * * *' // check git repo every 1 minute to see any changes, if changes made then run the jenkins
     }
